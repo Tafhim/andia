@@ -83,25 +83,25 @@ function andia_menu_link(array $variables) {
     $element['#localized_options']['attributes']['data-target'] = '#';
   }
   
-  if(!is_array($element['#attributes']['class'])){
+  if(empty($element['#attributes']['class'])){
       $element['#attributes']['class'] = array();
   }
   
-  if(!is_array($element['#localized_options']['#attributes']['class'])){
-      $element['#localized_options']['#attributes']['class'] = array();
+  if(empty($element['#localized_options']['attributes']['class'])){
+      $element['#localized_options']['attributes']['class'] = array();
   }
   
   // added support for glyphicons or font-awesome icons when icon-* class is added using menu_attributes module
-  $classes = array_merge($element['#attributes']['class'],$element['#localized_options']['#attributes']['class']);
-  $element['#localized_options']['#attributes']['class'] = $element['#attributes']['class'] = array();
+  $classes = array_merge($element['#attributes']['class'],$element['#localized_options']['attributes']['class']);
+  $element['#localized_options']['attributes']['class'] = $element['#attributes']['class'] = array();
   foreach($classes as $index=>$class){
       if(preg_match('#^icon-#', $class)>0){
           $element['#localized_options']['html'] = true;
-          $element['#title'] = "<i class=\"$class\"></i> ${$element['#title']}";
+          $element['#title'] = "<i class=\"$class\"></i> {$element['#title']}";
           break;
       }
-      else if($class == 'active'){
-          unset($element['#attributes']['class'][$index]);
+      
+      if($class == 'active'){
           $element['#attributes']['class'][] = 'current-page';
       }
       else if(!in_array ($class, array('leaf','first','last'))){
