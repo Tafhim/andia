@@ -59,8 +59,7 @@ function andia_menu_tree(&$variables) {
 function andia_menu_link(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
-  $element['#attributes']['class'] = null;
-  $icon_name = strtolower(implode('',explode(' ',$element['#title'])));
+  
   if ($element['#below']) {
     // Ad our own wrapper
     unset($element['#below']['#theme_wrappers']);
@@ -72,26 +71,30 @@ function andia_menu_link(array $variables) {
     if ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] > 1)) {
       // Generate as dropdown submenu
       $element['#attributes']['class'][] = 'dropdown-submenu';
-      $icon_name = $element['#title']; // redundant 
     }
     else {
       // Generate as standard dropdown
       $element['#attributes']['class'][] = 'dropdown';
       $element['#localized_options']['html'] = TRUE;
       $element['#title'] .= '<span class="caret"></span>';
-      $icon_name = 'submenu';
     }
 
     // Set dropdown trigger element to # to prevent inadvertant page loading with submenu click
     $element['#localized_options']['attributes']['data-target'] = '#';
   }
-
-  $icon = $element['#original_link']['depth']<=1?'<i class="icon-'.$icon_name.'"></i><br/>':"";
-
-  if(!empty($icon)){
-    $element['#localized_options']['html'] = true;
+  
+  // added support for glyphicons or font-awesome icons when icon-* class is added using menu_attributes module
+  $classes = $element['#attributes']['class'];
+  $icon = false;
+  foreach($classes as $index=>$class){
+      if(preg_match('^icon-', $class)>0){
+          unset($element['#attributes']['class'][$index]);
+          $element['#localized_options']['html'] = true;
+          $element['#title'] = "<i class=\"$class\"></i> ${$element['#title']}";
+          break;
+      }
   }
-
-  $output = l($icon. $element['#title'], $element['#href'], $element['#localized_options']);
+  
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
