@@ -87,7 +87,7 @@ function andia_menu_link(array $variables) {
   $classes = $element['#attributes']['class'];
   $icon = false;
   foreach($classes as $index=>$class){
-      if(preg_match('^icon-', $class)>0){
+      if(preg_match('#^icon-#', $class)>0){
           unset($element['#attributes']['class'][$index]);
           $element['#localized_options']['html'] = true;
           $element['#title'] = "<i class=\"$class\"></i> ${$element['#title']}";
