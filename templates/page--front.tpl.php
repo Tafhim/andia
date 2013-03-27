@@ -43,9 +43,6 @@
             <div class="icon-awesome">
                 <i class="icon-eye-open"></i>
             </div>
-            <h4>Beautiful Websites</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-            <a href="services.html">Read more</a>
             <?php if ($page['services_left']): ?>
                 <?php print render($page['services_left']); ?>
             <?php endif; ?>
@@ -54,9 +51,6 @@
             <div class="icon-awesome">
                 <i class="icon-table"></i>
             </div>
-            <h4>Responsive Layout</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-            <a href="services.html">Read more</a>
             <?php if ($page['services_middle']): ?>
                 <?php print render($page['services_middle']); ?>
             <?php endif; ?>
@@ -65,9 +59,6 @@
             <div class="icon-awesome">
                 <i class="icon-magic"></i>
             </div>
-            <h4>Awesome Logos</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-            <a href="services.html">Read more</a>
             <?php if ($page['services_right']): ?>
                 <?php print render($page['services_right']); ?>
             <?php endif; ?>
