@@ -11,6 +11,9 @@ regions[content]        = 'Content'
 regions[sidebar_first]  = 'Primary'
 regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
+regions[services_left]		= 'Services 1'
+regions[services_middle]		= 'Services 2'
+regions[services_right]		= 'Services 3'
 
 stylesheets[all][] = assets/bootstrap/css/bootstrap.css
 stylesheets[all][] = assets/bootstrap/css/bootstrap-responsive.css
